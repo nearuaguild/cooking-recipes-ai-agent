@@ -72,10 +72,10 @@ class Agent:
 
         recipes = self.recipe_provider.fetch_recipes(
             query=parsed_params.get("query", ""),
-            include_ingredients=parsed_params.get("include_ingredients"),
-            exclude_ingredients=parsed_params.get("exclude_ingredients"),
-            include_cuisines=parsed_params.get("include_cuisines"),
-            exclude_cuisines=parsed_params.get("exclude_cuisines"),
+            include_ingredients=parsed_params.get("include_ingredients", []),
+            exclude_ingredients=parsed_params.get("exclude_ingredients", []),
+            include_cuisines=parsed_params.get("include_cuisines", []),
+            exclude_cuisines=parsed_params.get("exclude_cuisines", []),
             max_amount=5,
         )
 
@@ -105,8 +105,6 @@ class Agent:
             self.client.add_reply(
                 "Something went wrong, please be patient until developer fixes it"
             )
-        finally:
-            self.client.request_user_input()
 
 
 def main(client: Environment):

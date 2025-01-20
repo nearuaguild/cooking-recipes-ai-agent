@@ -117,7 +117,8 @@ class SpoonacularRecipeProvider(RecipeProvider):
                     ],
                     [
                         RecipeInstruction(instruction.get("step"))
-                        for instruction in recipe["analyzedInstructions"][0]["steps"]
+                        for instructions in recipe["analyzedInstructions"]
+                        for instruction in instructions["steps"]
                     ],
                 )
                 for recipe in recipes
